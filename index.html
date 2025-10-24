@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jennilyn Magan | Creative Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #fff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, #ff5e62, #ff9966);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff9966;
+    }
+
+    .hero {
+      height: 80vh;
+      background: url('images.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .hero img {
+      width: 250px;
+      height: 200px;
+      border-radius: 100%;
+      border: 5px solid #29097a;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+
+    .hero img:hover {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff9966, #ff5e62);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #ff9966;
+    }
+
+    .about p {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(255, 94, 98, 0.5);
+    }
+
+    .card img, .card video {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .card img:hover, .card video:hover {
+      transform: scale(1.05);
+    }
+
+   .skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(255, 94, 98, 0.4);
+}
+
+.skill-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+}
+
+.skill-card h3 {
+  color: #ff9966;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.skill-card p {
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+
+    .vlogs iframe, .music iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+    }
+
+    .add-media {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .add-media input { margin-right: 10px; padding: 5px; }
+    .add-media button {
+      padding: 5px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff9966, #ff5e62);
+      color: #fff;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact input, .contact textarea, .contact button {
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .contact input, .contact textarea { background: rgba(255,255,255,0.1); color: #fff; }
+    .contact button { background: linear-gradient(90deg, #ff9966, #ff5e62); color: #fff; cursor: pointer; transition: transform 0.3s; }
+    .contact button:hover { transform: scale(1.05); }
+
+    footer { text-align: center; padding: 20px; background: #111827; }
+
+    @keyframes fadeInUp { 0% { opacity:0; transform: translateY(50px); } 100% { opacity:1; transform: translateY(0); } }
+    @keyframes glow { from { text-shadow:0 0 10px #ff9966; } to { text-shadow:0 0 20px #ff5e62; } }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 15px; }
+      nav { margin-top: 10px; }
+      .hero h2 { font-size: 2rem; }
+      .hero img { width: 140px; height: 140px; }
+    }
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>JENNILYN MAGAN</h1>
+  <nav>
+    <a href="#ABOUT">ABOUT</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#activities">ACTIVITIES</a>
+    <a href="#vlogs">VLOGS</a>
+    <a href="#favorites">FAVORITE</a>
+    <a href="#music">MUSIC</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <img src="image 1 (2).jpg" alt="Jennilyn Magan">
+    <h2> I'm Jennilyn Magan </h2>
+    <p>A passionate student who loves learning, creating, and sharing experiences through school activities, vlogs, and stories.</p>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <h2>About Me</h2>
+  <p>
+   Hi! I'm <b>Jennilyn Magan</b>, a creative and hardworking student.
+I like making vlogs, doing school projects, and sharing my experiences as a student.
+My goal is to inspire others to enjoy learning and never give up on their dreams.
+  </p>
+</section>
+
+<!-- Skills -->
+<section class="skills" id="skills">
+  <h2>My Skills</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Communication Icon">
+      <h3>Communication & Collaboration</h3>
+      <p>I can express my ideas clearly and work effectively in a team setting.</p>
+    </div>
+
+    <div class="skill-card">
+      <img src="blogging.jpg" alt="blogging">
+      <h3>Blogging</h3>
+      <p>I enjoy blogging because it lets me share my thoughts, experiences, and creativity.
+         Its a space where I can connect with others and express who I truly am.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Activities -->
+<section class="activities" id="activities">
+  <h2>School Activities</h2>
+  <div class="add-media">
+    <input type="file" id="activityImageUpload" accept="image/*">
+    <button onclick="addActivityImage()">Add Activity Image</button>
+  </div>
+  <div class="cards" id="activityCards">
+    <div class="card">
+      <img src="images 2.jpg.jpg" alt="Leadership Camp">
+      <h3>INTRAMURALS</h3>
+      <p>Joined leadership training camp to enhance teamwork and leadership skills.</p>
+    </div>
+    <div class="card">
+      <img src="images 3.jpg" alt="Science Fair">
+      <h3>GAME</h3>
+      <p>Win or lose, give it your all — every second counts."</p>
+    </div>
+    <div class="card">
+      <img src="IMAGES 4.jpg" alt="Outreach Program">
+      <h3>AWARDING</h3>
+      <p>Champions are made from hard work, heart, and the will to never give up."</p>
+    </div>
+  </div>
+</section>
+
+<!-- Vlogs -->
+<section class="vlogs" id="vlogs">
+  <h2>My Vlogs</h2>
+  <div class="add-media">
+    <input type="file" id="videoUpload" accept="video/*">
+    <button onclick="addVideo()">Add Video</button>
+  </div>
+  <div class="cards" id="vlogCards">
+    <div class="card">
+      <iframe src="video 2 (1).mp4" allowfullscreen></iframe>
+      <p>My first vlog experience at school </p>
+    </div>
+    <div class="card">
+      <iframe src="video 3.mp4" allowfullscreen></iframe>
+      <p>Day in my life as a student </p>
+    </div>
+  </div>
+</section>
+
+<!-- Favorites -->
+<section class="favorites" id="favorites">
+  <h2>Favorite Movies & Series</h2>
+  <div class="add-media">
+    <input type="file" id="imageUpload" accept="image/*">
+    <button onclick="addImage()">Add Image</button>
+  </div>
+  <div class="cards" id="favoriteCards">
+    <div class="card">
+      <img src="one peice 1.jpg" alt="ONE PIECE">
+      <h3>ONE PIECE</h3>
+      <p>A thrilling sci-fi series full of mystery and friendship.</p>
+    </div>
+    <div class="card">
+      <img src="dragon ball 1.jpg" alt="DRAGON BALL">
+      <h3>DRAGON BALL</h3>
+      <p>A magical movie series that shaped my imagination and creativity.</p>
+    </div>
+    <div class="card">
+      <img src="poisonous love.jpg" alt="SPIDERMAN">
+      <h3>POISONOUS LOVE</h3>
+      <p>Pat falls in love with Dr. Prem, but their secret love turns 
+        painful when truth and duty tear them apart. Love became their sweetest poison.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Music -->
+<section class="music" id="music">
+  <h2>My Favorite Music</h2>
+  <div class="add-media">
+    <input type="file" id="musicUpload" accept="audio/*,video/*">
+    <button onclick="addMusic()">Add Song</button>
+  </div>
+  <div class="cards" id="musicCards">
+    <div class="card">
+      <iframe style="border-radius:12px" src="this i promise you song.mp4" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+      <p>THIS I PRONISE YOU 🎶</p>
+    </div>
+    <div class="card">
+      <iframe src="nandito  ako  song.mp4" allowfullscreen></iframe>
+      <p>NANDITO AKO UMIIBIG SAYO 🌸</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>Contact Me</h2>
+  <form onsubmit="sendMail(event)">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<script>
+  function sendMail(event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    // ✉️ Ilisi ni sa imong tinuod nga email address
+    const mailto = `mailto:magan.jennilyn@llcc.edu.ph?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nFrom: " + email)}`;
+
+    // 👋 Sweet success alert
+    alert("Thank you! Your email app will open now. 💌");
+
+    window.location.href = mailto;
+  }
+</script>
+
+<footer>
+  <p>© 2025 Jennilyn Magan | All Rights Reserved</p>
+</footer>
+
+
+
+<script>
+  // Scroll animation
+  const sections = document.querySelectorAll("section");
+  window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        sec.classList.add("visible");
+      }
+    });
+  });
+
+  // Add video dynamically
+  function addVideo() {
+    const input = document.getElementById('videoUpload');
+    if(input.files && input.files[0]) {
+      const file = input.files[0];
+      const url = URL.createObjectURL(file);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<video controls width="100%" style="border-radius:10px;">
+        <source src="${url}" type="${file.type}">
+      </video><p>Newly added video 🎬</p>`;
+      document.getElementById('vlogCards').appendChild(card);
+      input.value = '';
+    } else alert('Please select a video to upload!');
+  }
+
+  // Add image dynamically for Favorites
+  function addImage() {
+    const input = document.getElementById('imageUpload');
+    if(input.files && input.files[0]) {
+      const file = input.files[0];
+      const url = URL.createObjectURL(file);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<img src="${url}" alt="New Image"><p>Newly added image 📸</p>`;
+      document.getElementById('favoriteCards').appendChild(card);
+      input.value = '';
+    } else alert('Please select an image to upload!');
+  }
+
+  // Add activity image dynamically
+  function addActivityImage() {
+    const input = document.getElementById('activityImageUpload');
+    if(input.files && input.files[0]) {
+      const file = input.files[0];
+      const url = URL.createObjectURL(file);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<img src="${url}" alt="New Activity Image"><p>Newly added activity 📸</p>`;
+      document.getElementById('activityCards').appendChild(card);
+      input.value = '';
+    } else alert('Please select an image to upload!');
+  }
+
+  // Add music dynamically
+  function addMusic() {
+    const input = document.getElementById('musicUpload');
+    if(input.files && input.files[0]) {
+      const file = input.files[0];
+      const url = URL.createObjectURL(file);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<audio controls style="width:100%; border-radius:10px;">
+        <source src="${url}" type="${file.type}">
+      </audio><p>Newly added song 🎵</p>`;
+      document.getElementById('musicCards').appendChild(card);
+      input.value = '';
+    } else alert('Please select a song to upload!');
+  }
+</script>
+
+</body>
+</html> 
